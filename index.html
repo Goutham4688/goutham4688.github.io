@@ -234,6 +234,30 @@
     }
   </style>
 </head>
+  <style>
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: auto;
+    white-space: nowrap;
+    background-color: var(--primary);
+  }
+
+  nav a {
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+  }
+
+  @media screen and (max-width: 768px) {
+    nav {
+      justify-content: flex-start;
+      font-size: 14px;
+    }
+  }
+</style>
 <body>
   <div class="navbar">
     <nav>
