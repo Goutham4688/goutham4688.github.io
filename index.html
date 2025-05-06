@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nidumukkala Naga Goutham | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a2238;
+      --secondary: #f5f6fa;
+      --accent: #e94560;
+      --card: #fff;
+      --text: #222;
+      --muted: #6c7a89;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(26,34,56,0.08);
+    }
+    .navbar nav {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 0;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+      position: relative;
+      cursor: pointer;
+    }
+    .navbar a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width .3s;
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+    }
+    .navbar a:hover::after {
+      width: 100%;
+    }
+    .hero-about {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(120deg, var(--primary) 60%, var(--accent) 100%);
+      color: #fff;
+      padding: 0 2rem;
+      gap: 3rem;
+    }
+    .about-content {
+      flex: 1;
+      max-width: 500px;
+    }
+    .about-content h1 {
+      font-size: 2.5rem;
+      margin: 0.5rem 0 0.2rem 0;
+      letter-spacing: 1px;
+    }
+    .about-content .subtitle {
+      font-size: 1.2rem;
+      color: #e0e0e0;
+      margin-bottom: 1.2rem;
+    }
+    .about-content .about {
+      font-size: 1.1em;
+      color: #e0e0e0;
+      margin-bottom: 2em;
+    }
+    .about-content .cta {
+      margin-top: 1.5rem;
+    }
+    .about-content .cta a {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.7em 1.5em;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1em;
+      box-shadow: 0 2px 8px rgba(233,69,96,0.12);
+      transition: background 0.2s;
+    }
+    .about-content .cta a:hover {
+      background: #b02a47;
+    }
+    .hero-photo {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-photo img {
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      object-fit: cover;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      margin-bottom: 2.5rem;
+    }
+    section, .resume-section {
+      scroll-margin-top: 90px;
+    }
+    .section-title {
+      font-size: 1.5em;
+      color: var(--primary);
+      border-left: 5px solid var(--accent);
+      padding-left: 0.7em;
+      margin-bottom: 1.2em;
+      letter-spacing: 0.5px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+      padding: 1.5rem 1.2rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(44, 62, 80, 0.13);
+    }
+    .card-title {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5em;
+    }
+    .card-sub {
+      color: var(--muted);
+      font-size: 0.98em;
+      margin-bottom: 0.7em;
+    }
+    .skills-list, .cert-list, .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .skills-list li, .cert-list li, .info-list li {
+      margin-bottom: 0.5em;
+    }
+    .contact-links a {
+      color: var(--accent);
+      margin-right: 1.2rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .contact-links a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+    .resume-section {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      scroll-margin-top: 90px;
+    }
+    .resume-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.8em 2em;
+      border-radius: 30px;
+      font-size: 1.1em;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 1.2em;
+      box-shadow: 0 2px 8px rgba(233,69,96,0.12);
+      transition: background 0.2s;
+    }
+    .resume-btn:hover {
+      background: #b02a47;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 2em 0 2em 0;
+      font-size: 0.97em;
+      background: #f0f1f6;
+      margin-top: 3em;
+    }
+    @media (max-width: 900px) {
+      .hero-about {
+        flex-direction: column;
+        min-height: unset;
+        padding: 2rem 1rem;
+        gap: 2rem;
+      }
+      .about-content, .hero-photo {
+        max-width: 100%;
+      }
+      .hero-photo img {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <nav>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#education" class="nav-link">Education</a>
+      <a href="#certifications" class="nav-link">Certifications</a>
+      <a href="#blog" class="nav-link">Blog</a>
+      <a href="#goals" class="nav-link">Goals</a>
+      <a href="#learning" class="nav-link">Learning</a>
+      <a href="#activities" class="nav-link">Activities</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#resume" class="nav-link">Resume</a>
+    </nav>
+  </div>
+  <section class="hero-about" id="about">
+    <div class="about-content">
+      <h1>Nidumukkala Naga Goutham</h1>
+      <div class="subtitle">Graduate Student | Software Engineer | Cloud Enthusiast</div>
+      <div class="about">
+        I am a graduate student in Computer Science at the University of South Dakota, specializing in software engineering, cloud computing, and full-stack development. I have a strong foundation in data structures, algorithms, and object-oriented software design. My experience spans desktop software development, Agile methodologies, and cloud platforms. I am passionate about designing, implementing, and deploying scalable solutions.
+      </div>
+      <div class="cta">
+        <a href="#contact">Contact Me</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="photo.jpg" alt="Naga Goutham's Photo">
+    </div>
+  </section>
+  <div class="container">
+    <section id="skills">
+      <div class="section-title">Technical Skills</div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">Programming</div>
+          <ul class="skills-list">
+            <li>Python, Java, JavaScript, TypeScript, C, Go</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Web & Desktop</div>
+          <ul class="skills-list">
+            <li>ReactJS, Angular, Node.js, .NET, Spring Boot</li>
+            <li>C++, Qt, JavaFX, .NET WPF</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Databases & Cloud</div>
+          <ul class="skills-list">
+            <li>MySQL, SQL Server, MongoDB</li>
+            <li>AWS, Google App Engine, Amazon EC2</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Tools & Practices</div>
+          <ul class="skills-list">
+            <li>GitHub, Firebase, Jenkins</li>
+            <li>Agile, Scrum, REST APIs, CI/CD, Unit Testing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section id="projects">
+      <div class="section-title">Projects</div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">Audio Processing Desktop App</div>
+          <div class="card-sub">C++/Qt</div>
+          <div>Developed a desktop application for audio signal processing with real-time visualization.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Full-Stack Task Management</div>
+          <div class="card-sub">ReactJS, Node.js, MongoDB</div>
+          <div>Built a task manager with real-time updates and notifications.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">E-Commerce Platform Prototype</div>
+          <div class="card-sub">Angular, .NET</div>
+          <div>Implemented secure payments and user management in a prototype e-commerce platform.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Bug Tracking System</div>
+          <div class="card-sub">Python, Django</div>
+          <div>Created a bug tracking system with Agile workflow integration.</div>
+        </div>
+      </div>
+    </section>
+    <section id="experience">
+      <div class="section-title">Experience</div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">Trinity Engineers</div>
+          <div class="card-sub">Software Engineering Intern, 2023</div>
+          <ul class="info-list">
+            <li>Developed full-stack applications using React, Node.js, and .NET.</li>
+            <li>Participated in Agile sprints and standup meetings.</li>
+            <li>Conducted code reviews and API optimizations.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">APSDC</div>
+          <div class="card-sub">Data Analyst Intern, 2021</div>
+          <ul class="info-list">
+            <li>Built dashboards and predictive models using Python and SQL.</li>
+            <li>Developed graded activities for data analysis.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section id="education">
+      <div class="section-title">Education</div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">University of South Dakota</div>
+          <div class="card-sub">Vermillion, SD, USA</div>
+          <div>Master of Science in Computer Science (2024–Present, Expected Graduation: Dec 2025)</div>
+        </div>
+        <div class="card">
+          <div class="card-title">V.R. Siddhartha Engineering College</div>
+          <div class="card-sub">Vijayawada, India</div>
+          <div>B.E. in Electronics and Instrumentation (2019–2023)</div>
+        </div>
+      </div>
+    </section>
+    <section id="certifications">
+      <div class="section-title">Certifications</div>
+      <ul class="cert-list">
+        <li>AI for Everyone (Coursera)</li>
+        <li>The Joy of Computing using Python (NPTEL)</li>
+        <li>Design, Technology, and Innovation (NPTEL)</li>
+      </ul>
+    </section>
+    <section id="blog">
+      <div class="section-title">Blog / Reflections</div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">Embracing Cloud Technologies</div>
+          <div class="card-sub">April 2025</div>
+          <div>
+            Transitioning to cloud platforms has been a transformative journey in my academic and professional life. Learning AWS and Google App Engine not only broadened my technical skills but also taught me the importance of scalability and reliability in modern software solutions.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Lessons from Agile Development</div>
+          <div class="card-sub">March 2025</div>
+          <div>
+            Working in Agile teams during my internships helped me appreciate the value of collaboration, iterative progress, and continuous feedback. These experiences have shaped my approach to both academic projects and real-world software engineering.
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="goals">
+      <div class="section-title">Future Goals</div>
+      <div class="card">
+        <div>
+          My immediate goal is to deepen my expertise in cloud-native application development and pursue certifications in AWS and Azure. Long-term, I aspire to contribute to open-source projects and lead engineering teams focused on impactful, scalable solutions.
+        </div>
+      </div>
+    </section>
+    <section id="learning">
+      <div class="section-title">Learning Journey</div>
+      <div class="card">
+        <div>
+          My learning journey includes completing online courses such as "AI for Everyone" (Coursera) and "The Joy of Computing using Python" (NPTEL). I regularly attend webinars and workshops to stay updated with the latest trends in software engineering and cloud computing.
+        </div>
+      </div>
+    </section>
+    <section id="activities">
+      <div class="section-title">Extracurricular Activities</div>
+      <div class="card">
+        <div>
+          I have participated in coding competitions, volunteered for university tech events, and contributed to student clubs focused on technology and innovation. These activities have helped me develop leadership and teamwork skills beyond the classroom.
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="section-title">Contact</div>
+      <div class="contact-links">
+        <a href="mailto:naga.goutham258@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/naga-goutham-nidumukkala-3997361a7/" target="_blank">LinkedIn</a>
+      </div>
+      <ul class="info-list">
+        <li>Vermillion, SD, USA</li>
+        <li>+1 605-857-5071</li>
+      </ul>
+    </section>
+    <section id="resume" class="resume-section">
+      <div class="section-title">Resume</div>
+      <a href="NG_A.pdf" class="resume-btn" download>Download My Resume</a>
+    </section>
+  </div>
+  <footer>
+    &copy; 2025 Nidumukkala Naga Goutham. All rights reserved.
+  </footer>
+</body>
+</html>
